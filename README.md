@@ -90,7 +90,7 @@ A place to run quantitative-strategy experiments in the browser: pick a game, a 
 - **“能不能从网页直接调用”是 2026 年 10 月 9 日实测的**：在这个网址的页面上，用一把无效的密钥向各家的接口发请求。DeepSeek、OpenAI、Kimi 的“密钥无效”能被页面读到，说明它们允许网页调用；火山方舟的回答被浏览器的跨域限制（CORS）拦下。没有用真实的密钥测过完整的对话。
 - **密钥只在你的浏览器里**：保存在本机浏览器（localStorage），请求从浏览器直接发给所选的服务商（或者你填的转发代理），不经过本站。和本站同一个域名下的其他页面在技术上也读得到它，所以在公用电脑上用完请点“清除密钥”。
 - **费用**由服务商按你的账号计。写一条规则大约发送五千字、收回几千字。
-- **转发代理**（设置里的“高级”）：服务商不允许网页直接调用时，要有一个小程序把请求转过去，并给回答加上允许跨域读取的响应头。页面请求的地址是 `<代理地址>/<完整的接口地址>`。代理能看到你的密钥，只用你自己部署的。仓库里为另一个项目写的 [tianxia/ai-proxy.mjs](../tianxia/ai-proxy.mjs) 是这种代理的一个例子（它的使用范围以 [LICENSE](../LICENSE) 为准）。
+- **转发代理**（设置里的“高级”）：服务商不允许网页直接调用时，要有一个小程序把请求转过去，并给回答加上允许跨域读取的响应头。页面请求的地址是 `<代理地址>/<完整的接口地址>`。代理能看到你的密钥，只用你自己部署的。仓库里为另一个项目写的 [tianxia/ai-proxy.mjs](https://github.com/AudreyYUAN0825/tianxia/blob/main/ai-proxy.mjs) 是这种代理的一个例子（它的使用范围以 [LICENSE](LICENSE) 为准）。
 - 不接入 AI 也不影响别的：世界、规则、图表、参数扫描和手册都在本地运行；规则的代码可以自己改（左栏规则下面的“代码与说明”）。
 
 这个页面最初是在 Claude 里运行的；在那里打开时，右栏直接用 Claude，不需要密钥。
@@ -205,7 +205,7 @@ To connect: click "AI" at the top right, then "Connect an AI…", choose a provi
 - **"Callable directly from the page" was measured on 9 October 2026**, from a page at this address, by sending each API a request with an invalid key. The page could read the "invalid key" replies of DeepSeek, OpenAI and Kimi, so they accept calls from web pages; the reply from Volcengine Ark was blocked by the browser's cross-origin rules (CORS). A full conversation with a real key was not tested.
 - **Your key stays in your browser.** It is kept in localStorage, and requests go straight from the browser to the provider you chose (or to your forwarding proxy), never through this site. Other pages on the same domain can technically read it, so click "Clear key" when you are done on a shared computer.
 - **Cost** is billed by the provider to your account. Writing one rule sends roughly five thousand characters and receives a few thousand.
-- **Forwarding proxy** (under "Advanced" in the settings): when a provider blocks calls from web pages, a small relay has to pass the request on and add the response headers that let the page read the reply. The page requests `<proxy address>/<full API URL>`. The proxy sees your key, so use only one you deployed yourself. [tianxia/ai-proxy.mjs](../tianxia/ai-proxy.mjs), written for another project in this repository, is an example of such a relay (what it may be used for is governed by the [LICENSE](../LICENSE)).
+- **Forwarding proxy** (under "Advanced" in the settings): when a provider blocks calls from web pages, a small relay has to pass the request on and add the response headers that let the page read the reply. The page requests `<proxy address>/<full API URL>`. The proxy sees your key, so use only one you deployed yourself. [tianxia/ai-proxy.mjs](https://github.com/AudreyYUAN0825/tianxia/blob/main/ai-proxy.mjs), written for another project in this repository, is an example of such a relay (what it may be used for is governed by the [LICENSE](LICENSE)).
 - Everything else works without an AI: worlds, rules, charts, parameter sweeps and the handbook all run locally, and you can edit a rule's code yourself under "Code & notes" below the rule in the left column.
 
 The page was first built to run inside Claude; opened there, the panel uses Claude directly and needs no key.
@@ -237,8 +237,13 @@ The engine and the rules are plain JavaScript with no runtime dependencies. The 
 
 © 2026 Zechen Bian. 保留所有权利 / All rights reserved.
 
-本项目**不是开源项目**。可以在线使用，但未经书面许可，不得复制、修改、再分发、商用或用于 AI/机器学习训练。详见 [LICENSE](../LICENSE)。其中有一处专门给策略实验室的例外（第二条（五））：页面自带的样板（规则、世界和玩法）可以用页面自带的编辑器改写，做出来的东西可以贴到本仓库的 Issue 供策略实验室载入；别人贴在那里的内容，可以在策略实验室里载入、运行和改写。页面里内联的 KaTeX 是第三方软件，按它自己的 MIT 许可使用，见 [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md)。
+本项目**不是开源项目**。可以在线使用，但未经书面许可，不得复制、修改、再分发、商用或用于 AI/机器学习训练。详见 [LICENSE](LICENSE)。其中有一处专门给策略实验室的例外（第二条（五））：页面自带的样板（规则、世界和玩法）可以用页面自带的编辑器改写，做出来的东西可以贴到本仓库的 Issue 供策略实验室载入；别人贴在那里的内容，可以在策略实验室里载入、运行和改写。页面里内联的 KaTeX 是第三方软件，按它自己的 MIT 许可使用，见 [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md)。
 
-This project is **not open source**. You are welcome to use it online, but you may not copy, modify, redistribute, use commercially, or use it to train AI/ML models without written permission. See [LICENSE](../LICENSE). It makes one exception specific to Strategy Lab (section 2(e)): you may use the page's built-in editors to adapt its built-in templates (rules, worlds and games) and post what you make there to this repository's issue tracker so that it can be loaded in Strategy Lab, and inside Strategy Lab you may load, run and adapt what other people have posted there. KaTeX, which is bundled in the page, is third-party software under its own MIT licence; see [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).
+This project is **not open source**. You are welcome to use it online, but you may not copy, modify, redistribute, use commercially, or use it to train AI/ML models without written permission. See [LICENSE](LICENSE). It makes one exception specific to Strategy Lab (section 2(e)): you may use the page's built-in editors to adapt its built-in templates (rules, worlds and games) and post what you make there to this repository's issue tracker so that it can be loaded in Strategy Lab, and inside Strategy Lab you may load, run and adapt what other people have posted there. KaTeX, which is bundled in the page, is third-party software under its own MIT licence; see [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).
 
 Built with Claude.
+
+
+## Repository origin / 仓库来源
+
+本项目从 [AudreyYUAN0825/ZechenBian.github.io](https://github.com/AudreyYUAN0825/ZechenBian.github.io) 的 `strategy-lab/` 目录拆分，保留该目录的提交历史。原始作品来自 [ZechenBian/ZechenBian.github.io](https://github.com/ZechenBian/ZechenBian.github.io)，作者、版权及许可不变；原在线演示链接仍指向作者的网站。
